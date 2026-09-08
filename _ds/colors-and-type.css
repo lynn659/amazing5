@@ -1,0 +1,215 @@
+/* ==========================================================================
+   AMAZING POSTNATAL — Colors & Typography
+   Sampled directly from "Amazing Branding Design 2025.pdf" (3 pages).
+   Brand intent: gentle, premium, maternal. Sage green + warm brown anchor
+   the identity (the logo seedling & wordmark); a rose/pink family adds
+   warmth & affection; cream neutrals carry surfaces.
+   ========================================================================== */
+
+/* --- Webfonts (load via @import or <link> in HTML head) ---------------------
+   English: Avenir Next (proprietary) → Google Fonts fallback "Nunito Sans"
+   Chinese display:  方正正中黑简体    → SHIPPED in fonts/FZZZHONGJW.TTF
+   Chinese body:     苹方 (PingFang)   → system Apple font, fallback Noto Sans SC
+   ---------------------------------------------------------------------------- */
+
+@import url("https://fonts.googleapis.com/css2?family=Nunito+Sans:opsz,wght@6..12,200;6..12,300;6..12,400;6..12,500;6..12,600;6..12,700&family=Cormorant:wght@300;400;500&family=Noto+Sans+SC:wght@200;300;400;500;700;900&display=swap");
+
+/* 方正正中黑简体 — official brand display face, shipped with this design system.
+   Path is resolved relative to whichever CSS file @imports this one; both the
+   /preview/ cards and /ui_kits/marketing_site/ chain @import this file with the
+   correct relative depth, so the URL below works from anywhere via the URL()
+   resolution starting from THIS file's location (project root). */
+@font-face {
+  font-family: "FZZhengZhongHeiJianTi";
+  src: url("fonts/fzzzhongjw.ttf") format("truetype");
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+:root {
+  /* ---------- BRAND PRIMARIES (the seedling) ------------------------------ */
+  --brand-sage:        #98afa7;  /* the leaf / seedling green */
+  --brand-sage-deep:   #6e807b;  /* deeper sage for press / strokes */
+  --brand-sage-soft:   #b5c0bd;  /* softer sage for fills, dividers */
+  --brand-sage-mist:   #d8dfdc;  /* very pale wash backgrounds */
+  --brand-gold:        #c5a857;  /* metallic gold seed at center of logo */
+  --brand-gold-light:  #e0d694;  /* gold highlight */
+  --brand-bark:        #79674e;  /* the wordmark brown (logo letters) */
+  --brand-bark-deep:   #5d5040;  /* deepest brown / body text */
+
+  /* ---------- ROSE / PINK SECONDARY (warmth, femininity, gifts) ----------- */
+  --rose-deep:         #b66370;  /* berry rose – primary CTA pink */
+  --rose:              #bf727e;  /* main rose */
+  --rose-dusty:        #bd7e82;  /* muted rose */
+  --rose-mauve:        #c8818d;  /* the small bow */
+  --rose-blush:        #f7d5db;  /* pale blush – the ribbons, cards */
+  --rose-petal:        #fbe9ec;  /* the lightest pink wash */
+
+  /* ---------- WARM NEUTRALS (paper, sand, taupe) -------------------------- */
+  /* Standardised beige — brand beige is #FAF6EE everywhere (client direction, 2026-08).
+     --cream is kept as an alias so existing usages resolve to the same value. */
+  --cream:             #faf6ee;  /* brand beige */
+  --paper:             #faf6ee;  /* same beige, used for surfaces */
+  --beige:             #faf6ee;  /* canonical token */
+  --sand:              #d4cbb8;  /* card / panel neutral */
+  --taupe:             #b5a89a;  /* warm gray, secondary text */
+  --stone:             #e6e1d7;  /* divider / hairline */
+
+  /* ---------- COOL NEUTRALS ----------------------------------------------- */
+  --mist:              #e2e3e4;  /* page background option */
+  --pebble:            #aeb9b6;  /* cool gray-green */
+
+  /* ---------- SEMANTIC SURFACES ------------------------------------------- */
+  --bg:                #ffffff;          /* default page */
+  --bg-warm:           var(--paper);     /* warm canvas */
+  --bg-blush:          var(--rose-petal);/* sentimental sections */
+  --bg-mist:           var(--brand-sage-mist);
+  --surface:           #ffffff;
+  --surface-elevated:  #ffffff;
+
+  /* ---------- SEMANTIC TEXT (on light) ------------------------------------ */
+  --fg:                var(--brand-bark-deep); /* primary body */
+  --fg-strong:         #3d3528;                /* near-black brown */
+  --fg-muted:          var(--brand-bark);      /* secondary copy */
+  --fg-subtle:         var(--taupe);           /* tertiary, labels */
+  --fg-on-sage:        #ffffff;
+  --fg-on-rose:        #ffffff;
+  --fg-on-cream:       var(--brand-bark-deep);
+
+  /* ---------- ACCENT / LINK / FOCUS --------------------------------------- */
+  --accent:            var(--rose-deep);
+  --accent-hover:      #a55562;
+  --link:              var(--brand-sage-deep);
+  --focus-ring:        color-mix(in srgb, var(--brand-sage-deep) 40%, transparent);
+
+  /* ---------- BORDERS ----------------------------------------------------- */
+  --border:            var(--stone);
+  --border-strong:     var(--taupe);
+  --border-sage:       var(--brand-sage-soft);
+  --hairline:          rgba(121, 103, 78, 0.14); /* bark @ 14% */
+
+  /* ---------- ELEVATION (very soft, paper-like) --------------------------- */
+  --shadow-sm:    0 1px 2px rgba(93, 80, 64, 0.06);
+  --shadow:       0 4px 16px rgba(93, 80, 64, 0.08);
+  --shadow-md:    0 10px 30px rgba(93, 80, 64, 0.10);
+  --shadow-lg:    0 24px 60px rgba(93, 80, 64, 0.14);
+  --shadow-petal: 0 14px 40px rgba(182, 99, 112, 0.18);
+  --inner-soft:   inset 0 1px 0 rgba(255, 255, 255, 0.7); /* @kind shadow */
+
+  /* ---------- RADII (generous, soft) -------------------------------------- */
+  --radius-xs:   4px;
+  --radius-sm:   8px;
+  --radius:      14px;
+  --radius-md:   18px;
+  --radius-lg:   24px;
+  --radius-xl:   32px;
+  --radius-pill: 999px;
+
+  /* ---------- SPACING SCALE (8px base, halves available) ------------------ */
+  --space-1:  4px;
+  --space-2:  8px;
+  --space-3:  12px;
+  --space-4:  16px;
+  --space-5:  24px;
+  --space-6:  32px;
+  --space-7:  48px;
+  --space-8:  64px;
+  --space-9:  96px;
+  --space-10:128px;
+
+  /* ---------- TYPOGRAPHY FAMILIES ----------------------------------------- */
+  --font-en:       "Avenir Next", "Nunito Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+  --font-en-display: "Avenir Next", "Nunito Sans", -apple-system, "Segoe UI", sans-serif;
+  --font-en-serif: "Cormorant", "Cormorant Garamond", "Times New Roman", serif; /* used sparingly for the wordmark style */
+  --font-zh:       "PingFang SC", "苹方", "Noto Sans SC", "Microsoft YaHei", sans-serif;
+  --font-zh-display: "FZZhengZhongHeiJianTi", "方正正中黑简体", "Noto Sans SC", "PingFang SC", sans-serif;
+  --font-mono:     ui-monospace, SFMono-Regular, "JetBrains Mono", Menlo, Consolas, monospace;
+
+  /* ---------- TYPE SCALE (px-based for slides; rem also works) ------------ */
+  --fs-display: 72px;   /* hero */
+  --fs-h1:      48px;
+  --fs-h2:      36px;
+  --fs-h3:      28px;
+  --fs-h4:      22px;
+  --fs-h5:      18px;
+  --fs-body:    16px;
+  --fs-sm:      14px;
+  --fs-xs:      12px;
+
+  --lh-tight:   1.1; /* @kind other */
+  --lh-snug:    1.25; /* @kind other */
+  --lh-normal:  1.5; /* @kind other */
+  --lh-loose:   1.7; /* @kind other */
+
+  --tracking-wide:  0.16em; /* @kind other */
+  --tracking-mid:   0.08em; /* @kind other */
+  --tracking-tight: -0.01em; /* @kind other */
+
+  /* ---------- MOTION ------------------------------------------------------ */
+  --ease:           cubic-bezier(.2, .7, .2, 1); /* @kind other */
+  --ease-in:        cubic-bezier(.6, .0, .8, .4); /* @kind other */
+  --ease-spring:    cubic-bezier(.34, 1.56, .64, 1); /* @kind other */
+  --dur-fast:       140ms; /* @kind other */
+  --dur:            240ms; /* @kind other */
+  --dur-slow:       420ms; /* @kind other */
+}
+
+/* ==========================================================================
+   SEMANTIC TYPOGRAPHY
+   ========================================================================== */
+.h-display {
+  font-family: var(--font-en-display);
+  font-weight: 500;
+  font-size: var(--fs-display);
+  letter-spacing: var(--tracking-tight);
+  line-height: var(--lh-tight);
+  color: var(--fg-strong);
+}
+.h1 { font-family: var(--font-en-display); font-weight: 500; font-size: var(--fs-h1); line-height: var(--lh-snug); letter-spacing: var(--tracking-tight); color: var(--fg-strong); }
+.h2 { font-family: var(--font-en-display); font-weight: 500; font-size: var(--fs-h2); line-height: var(--lh-snug); color: var(--fg-strong); }
+.h3 { font-family: var(--font-en-display); font-weight: 500; font-size: var(--fs-h3); line-height: var(--lh-snug); color: var(--fg-strong); }
+.h4 { font-family: var(--font-en-display); font-weight: 600; font-size: var(--fs-h4); line-height: var(--lh-snug); color: var(--fg); }
+.h5 { font-family: var(--font-en-display); font-weight: 600; font-size: var(--fs-h5); line-height: var(--lh-snug); color: var(--fg); }
+
+/* Chinese display – uses the heavy 方正正中黑 substitute */
+.zh-display {
+  font-family: var(--font-zh-display);
+  font-weight: 900;
+  letter-spacing: 0.02em;
+  color: var(--fg-strong);
+}
+.zh-body {
+  font-family: var(--font-zh);
+  font-weight: 300;             /* 苹方 Light */
+  letter-spacing: 0.04em;
+  color: var(--fg);
+}
+.zh-body-medium {
+  font-family: var(--font-zh);
+  font-weight: 500;             /* 苹方 Medium */
+}
+
+/* Section eyebrow labels — like "COLOR" "FONT" "ELEMENT" in the brand book */
+.eyebrow {
+  font-family: var(--font-en);
+  font-weight: 700;
+  font-size: 14px;
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
+  color: var(--brand-bark);
+}
+
+.p, p.body { font-family: var(--font-en); font-weight: 400; font-size: var(--fs-body); line-height: var(--lh-loose); color: var(--fg); }
+.p-sm     { font-family: var(--font-en); font-weight: 400; font-size: var(--fs-sm); line-height: var(--lh-normal); color: var(--fg-muted); }
+.caption  { font-family: var(--font-en); font-weight: 500; font-size: var(--fs-xs); letter-spacing: var(--tracking-mid); text-transform: uppercase; color: var(--fg-subtle); }
+.tagline  { font-family: var(--font-en); font-weight: 400; font-size: 18px; letter-spacing: 0.14em; color: var(--brand-bark); }
+.tagline-zh { font-family: var(--font-zh); font-weight: 400; font-size: 14px; letter-spacing: 0.16em; color: var(--brand-sage-deep); }
+
+/* ==========================================================================
+   UTILITY: divider line with centered label (the brand book uses this everywhere)
+   <div class="rule"><span>COLOR</span></div>
+   ========================================================================== */
+.rule { display:flex; align-items:center; gap: 20px; color: var(--brand-sage); }
+.rule::before, .rule::after { content:""; flex:1; height:1px; background: currentColor; }
+.rule > span { font-family: var(--font-en); font-weight: 700; font-size: 14px; letter-spacing: var(--tracking-wide); color: var(--brand-bark); text-transform: uppercase; }
